@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://pokeapi.co")
+            .baseUrl("https://pokeapi.co/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(okhttpClient)
             .build()
@@ -52,8 +52,8 @@ class MainActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
                     if (response.isSuccessful) {
                         val pokemon = response.body()
-                        tvPokemon.text = pokemon?.nome
-                        Picasso.get().load(pokemon?.sprite?.imagem)
+                        tvNomePokemon.text = pokemon?.nome
+                        Picasso.get().load(pokemon?.sprites?.imagem)
                             .error(R.mipmap.ic_launcher)
                             .placeholder(R.mipmap.ic_launcher)
                             .into(ivPokemon);
